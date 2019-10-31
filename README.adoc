@@ -1,0 +1,3 @@
+== Local版AWSリソースをコンテナ用意してごにょる
+
+image:https://circleci.com/gh/sunakan/notes-about-sqs-s3.svg?style=svg["CircleCI", link="https://circleci.com/gh/sunakan/notes-about-sqs-s3"]
