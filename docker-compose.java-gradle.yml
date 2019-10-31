@@ -3,7 +3,7 @@
 version: "3.7"
 
 services:
-  java-gradle:
+  app:
     command: bash
     tty: true
     working_dir: /app

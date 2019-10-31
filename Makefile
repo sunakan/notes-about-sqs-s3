@@ -6,9 +6,19 @@ ci:
 ci-valid:
 	circleci config validate
 
-up-java-gradle:
-	cp ./profiles/java-gradle/env ./.env
-	docker-compose up -d
+setup-shared-env:
+	cp ./profiles/env.shared ./.env
+setup-java-gradle: setup-shared-env
+	cat ./profiles/java-gradle/env >> ./.env
 
-bash-java-gradle:
-	docker-compose exec java-gradle bash
+config:
+	docker-compose config
+
+up:
+	docker-compose up -d
+down:
+	docker-compose down
+
+
+bash:
+	docker-compose exec app bash

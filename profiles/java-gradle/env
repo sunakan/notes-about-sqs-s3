@@ -1,3 +1,3 @@
 OPENDJDK_VERSION_TAG=11.0.4_11-jdk-hotspot-bionic
 
-COMPOSE_FILE=docker-compose.java-gradle.yml
+COMPOSE_FILE=docker-compose.java-gradle.yml:docker-compose.fake-sqs.yml
