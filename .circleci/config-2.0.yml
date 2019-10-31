@@ -1,0 +1,59 @@
+version: 2
+jobs:
+  helloworld:
+    docker:
+    - image: circleci/openjdk:11.0.5-jdk-stretch
+    steps:
+    - run:
+        command: |
+          echo "HelloWorld"
+  gradle-java-junit:
+    docker:
+    - image: circleci/openjdk:11.0.5-jdk-stretch
+    steps:
+    - checkout
+    - run:
+        command: ./gradlew test
+        working_directory: java-gradle
+workflows:
+  build:
+    jobs:
+    - helloworld
+    - gradle-java-junit
+  version: 2
+
+# Original config.yml file:
+# ---
+# 
+# version: 2.1
+# 
+# executors:
+#   java:
+#     parameters:
+#       tag:
+#         type: string
+#         default: \"11.0.5-jdk-stretch\"
+#     docker:
+#       - image: circleci/openjdk:<< parameters.tag >>
+# 
+# jobs:
+#   helloworld:
+#     executor: java
+#     steps:
+#       - run:
+#           command: |
+#             echo \"HelloWorld\"
+#   gradle-java-junit:
+#     executor: java
+#     steps:
+#       - checkout
+#       - run:
+#           command: ./gradlew test
+#           working_directory: java-gradle
+# 
+# 
+# workflows:
+#   build:
+#     jobs:
+#       - helloworld
+#       - gradle-java-junit
