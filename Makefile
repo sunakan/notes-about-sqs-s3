@@ -5,3 +5,10 @@ ci:
 
 ci-valid:
 	circleci config validate
+
+up-java-gradle:
+	cp ./profiles/java-gradle/env ./.env
+	docker-compose up -d
+
+bash-java-gradle:
+	docker-compose exec java-gradle bash

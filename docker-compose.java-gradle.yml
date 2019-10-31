@@ -1,0 +1,12 @@
+---
+
+version: "3.7"
+
+services:
+  java-gradle:
+    command: bash
+    tty: true
+    working_dir: /app
+    image: adoptopenjdk:${OPENDJDK_VERSION_TAG}
+    volumes:
+      - ./java-gradle:/app
