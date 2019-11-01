@@ -5,3 +5,5 @@ version: "3.7"
 services:
   sqs:
     image: softwaremill/elasticmq:${ELASTICMQ_VERSION_TAG}
+    volumes:
+      - ./fake-sqs/custom.conf:/opt/elasticmq.conf:ro
