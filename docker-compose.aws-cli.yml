@@ -1,0 +1,11 @@
+---
+
+version: "3.7"
+
+services:
+  aws-cli:
+    image: mesosphere/aws-cli:${AWS_CLI_VERSION_TAG}
+    environment:
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+      AWS_DEFAULT_REGION: ap-northest-1
