@@ -22,5 +22,18 @@ down:
 bash:
 	docker-compose exec app bash
 
+ENDPOINT=http://sqs:9324
+QUEUE_NAME=suna--dev
 q-list:
-	docker-compose -f docker-compose.aws-cli.yml -f docker-compose.network.yml run --rm aws-cli sqs list-queues --endpoint-url http://sqs:9324
+	docker-compose -f docker-compose.aws-cli.yml -f docker-compose.network.yml run --rm aws-cli \
+    sqs list-queues \
+    --endpoint-url ${ENDPOINT}
+
+q-size:
+	docker-compose -f docker-compose.aws-cli.yml -f docker-compose.network.yml run --rm aws-cli \
+    sqs get-queue-attributes \
+    --endpoint-url ${ENDPOINT} \
+    --queue-url http://fake-sqs:9324/queue/${QUEUE_NAME} \
+    --attribute-names ApproximateNumberOfMessages \
+      ApproximateNumberOfMessagesDelayed \
+      ApproximateNumberOfMessagesNotVisible
