@@ -2,7 +2,68 @@
 
 image:https://circleci.com/gh/sunakan/notes-about-sqs-s3.svg?style=svg["CircleCI", link="https://circleci.com/gh/sunakan/notes-about-sqs-s3"]
 
+
+=== 起動
+
 ----
 $ make up
+----
+
+=== queueのリスト取得
+
+* 起動後(基本、起動後)
+
+----
 $ make q-list
+{
+  "QueueUrls": [
+    "http://fake-sqs:9324/queue/suna--dev",
+    "http://fake-sqs:9324/queue/suna--dev.dead-letters"
+  ]
+}
+----
+
+=== queueのsize
+
+----
+$ make q-size
+{
+  "Attributes": {
+    "ApproximateNumberOfMessagesNotVisible": "0",
+    "ApproximateNumberOfMessages": "0",
+    "ApproximateNumberOfMessagesDelayed": "0"
+  }
+}
+----
+
+=== enqueue
+
+----
+$ make enq
+{
+  "MD5OfMessageBody": "fc5e038d38a57032085441e7fe7010b0",
+  "MessageId": "d92fa33e-ec14-46ae-9ecf-ee7efa216350"
+}
+$ make q-size
+{
+  "Attributes": {
+    "ApproximateNumberOfMessagesNotVisible": "0",
+    "ApproximateNumberOfMessages": "1",
+    "ApproximateNumberOfMessagesDelayed": "0"
+  }
+}
+----
+
+=== purge(queueを消さずにクリア)
+
+----
+$ make q-purge
+$ make q-size
+{
+  "Attributes": {
+    "ApproximateNumberOfMessagesNotVisible": "0",
+    "ApproximateNumberOfMessages": "0",
+    "ApproximateNumberOfMessagesDelayed": "0"
+  }
+}
 ----
