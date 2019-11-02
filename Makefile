@@ -44,3 +44,9 @@ enq:
     --queue-url http://fake-sqs:9324/queue/${QUEUE_NAME} \
     --endpoint-url ${ENDPOINT} \
     --message-body "helloworld"
+
+q-purge:
+	docker-compose -f docker-compose.aws-cli.yml -f docker-compose.network.yml run --rm aws-cli \
+    sqs purge-queue \
+    --queue-url http://fake-sqs:9324/queue/${QUEUE_NAME} \
+    --endpoint-url ${ENDPOINT}
