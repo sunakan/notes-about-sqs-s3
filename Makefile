@@ -37,3 +37,10 @@ q-size:
     --attribute-names ApproximateNumberOfMessages \
       ApproximateNumberOfMessagesDelayed \
       ApproximateNumberOfMessagesNotVisible
+
+enq:
+	docker-compose -f docker-compose.aws-cli.yml -f docker-compose.network.yml run --rm aws-cli \
+    sqs send-message \
+    --queue-url http://fake-sqs:9324/queue/${QUEUE_NAME} \
+    --endpoint-url ${ENDPOINT} \
+    --message-body "helloworld"
